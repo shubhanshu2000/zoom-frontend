@@ -38,10 +38,9 @@ function Join() {
               By clicking "Join", you agree to our
               <span className="text-[#0956B5] cursor-pointer">
                 Terms of Services
-              </span>{" "}
+              </span>
               and
               <span className="text-[#0956B5] cursor-pointer">
-                {" "}
                 Privacy Statement
               </span>
             </p>
