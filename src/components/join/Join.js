@@ -36,8 +36,14 @@ function Join() {
             </label>
             <p className="text-sm my-4 ">
               By clicking "Join", you agree to our
-              <span className="text-[#0956B5]">Terms of Services</span> and
-              <span className="text-[#0956B5]"> Privacy Statement</span>
+              <span className="text-[#0956B5] cursor-pointer">
+                Terms of Services
+              </span>{" "}
+              and
+              <span className="text-[#0956B5] cursor-pointer">
+                {" "}
+                Privacy Statement
+              </span>
             </p>
             <button
               disabled={meetID.length > 4 ? false : true}
