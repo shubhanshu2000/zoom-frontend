@@ -47,15 +47,15 @@ function Navigation() {
                   style={{ visibility: visible ? "visible" : "hidden" }}
                   className="hover-join mt-1 text-[#333] font-normal right-0 left-auto bg-[#fff] leading-6  border-[1px] rounded-md bg- w-[9.4rem] shadow-xl py-1   absolute"
                 >
-                  <li className="hover:bg-[#0c63ce]  py-1 block px-4 w-full hover:text-white">
+                  <li className="hover:bg-[#0c63ce] cursor-pointer py-1 block px-4 w-full hover:text-white">
                     <Link className="" to="/signin">
                       With Video Off
                     </Link>
                   </li>
-                  <li className="hover:bg-[#0c63ce] block py-1 px-4 w-full hover:text-white">
+                  <li className="hover:bg-[#0c63ce] cursor-pointer block py-1 px-4 w-full hover:text-white">
                     <Link to="/signin">With Video On</Link>
                   </li>
-                  <li className="hover:bg-[#0c63ce] block px-4 py-1 w-full hover:text-white">
+                  <li className="hover:bg-[#0c63ce] block px-4 cursor-pointer py-1 w-full hover:text-white">
                     <Link to="/signin">Screen Share Only</Link>
                   </li>
                 </ul>
