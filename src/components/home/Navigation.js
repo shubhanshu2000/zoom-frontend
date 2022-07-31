@@ -1,15 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 function Navigation() {
+  const [visible, setVisible] = useState(false);
+
+  console.log(visible);
+
   return (
     <div>
-      <header>
-        <nav className="flex justify-between border-b-[1px] py-4 px-12 sticky text-sm font-semibold">
+      <header className="">
+        <nav className="fixed bg-white top-0 w-full z-[99999] flex  justify-between border-b-[1px] py-4 px-12 opacity-95 border-[#e7e7e7]   text-sm font-semibold">
           <div className="flex justify-between items-center">
             <Link to="/">
               <img
-                className="  w-3/4 "
+                className="  w-3/4"
                 src="https://st1.zoom.us/static/6.2.7552/image/new/ZoomLogo.png"
                 alt="logo"
               />
@@ -33,13 +37,29 @@ function Navigation() {
             <li>
               <Link to="/join">JOIN</Link>
             </li>
-            <li>
-              <Link to="/host">HOST</Link>
-              <select className="hidden">
-                <option value="With video off">With video off</option>
-                <option value="With video on">With video on</option>
-                <option value="Screen share only">Screen share only</option>
-              </select>
+            <li
+              onMouseEnter={() => setVisible(!visible)}
+              onMouseLeave={() => setTimeout(() => setVisible(!visible), 800)}
+            >
+              <div className="relative py-2">
+                <Link to="/host">HOST</Link>
+                <ul
+                  style={{ visibility: visible ? "visible" : "hidden" }}
+                  className="hover-join mt-1 text-[#333] font-normal right-0 left-auto bg-[#fff] leading-6  border-[1px] rounded-md bg- w-[9.4rem] shadow-xl py-1   absolute"
+                >
+                  <li className="hover:bg-[#0c63ce]  py-1 block px-4 w-full hover:text-white">
+                    <Link className="" to="/signin">
+                      With Video Off
+                    </Link>
+                  </li>
+                  <li className="hover:bg-[#0c63ce] block py-1 px-4 w-full hover:text-white">
+                    <Link to="/signin">With Video On</Link>
+                  </li>
+                  <li className="hover:bg-[#0c63ce] block px-4 py-1 w-full hover:text-white">
+                    <Link to="/signin">Screen Share Only</Link>
+                  </li>
+                </ul>
+              </div>
             </li>
 
             <li>

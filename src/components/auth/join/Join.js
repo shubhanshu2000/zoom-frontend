@@ -18,7 +18,7 @@ function Join() {
   return (
     <>
       <div className="bg-[#fff] flex justify-center items-center h-screen">
-        <div className="-mt-10 ">
+        <div className="mt-20 ">
           <h1 className="text-center -mt-12 font-semibold text-3xl">
             Join Meeting
           </h1>
