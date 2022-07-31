@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/home/Home";
 import Navigation from "./components/home/Navigation";
-import Join from "./components/join/Join";
+import Join from "./components/auth/join/Join";
 
 function App() {
   return (

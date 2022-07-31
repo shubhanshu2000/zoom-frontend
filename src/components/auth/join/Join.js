@@ -19,10 +19,10 @@ function Join() {
     <>
       <div className="bg-[#fff] flex justify-center items-center h-screen">
         <div className="-mt-10 ">
-          <h1 className="text-center -mt-20 font-semibold text-3xl">
+          <h1 className="text-center -mt-12 font-semibold text-3xl">
             Join Meeting
           </h1>
-          <div className=" mx-auto text-start w-3/4 mt-24  leading-10 ">
+          <div className=" mx-auto text-start w-3/4 mt-20  leading-10 ">
             <label className="text-xs text-[#747486]">
               Meeting ID or Personal Link Name
               <input
@@ -35,11 +35,11 @@ function Join() {
               />
             </label>
             <p className="text-sm my-4 ">
-              By clicking "Join", you agree to our
+              By clicking "Join", you agree to our{" "}
               <span className="text-[#0956B5] cursor-pointer">
                 Terms of Services
-              </span>
-              and
+              </span>{" "}
+              and{" "}
               <span className="text-[#0956B5] cursor-pointer">
                 Privacy Statement
               </span>

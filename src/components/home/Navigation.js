@@ -5,11 +5,11 @@ function Navigation() {
   return (
     <div>
       <header>
-        <nav className="flex justify-between py-4 px-12 sticky text-sm font-semibold">
+        <nav className="flex justify-between border-b-[1px] py-4 px-12 sticky text-sm font-semibold">
           <div className="flex justify-between items-center">
             <Link to="/">
               <img
-                className="  w-3/4"
+                className="  w-3/4 "
                 src="https://st1.zoom.us/static/6.2.7552/image/new/ZoomLogo.png"
                 alt="logo"
               />
@@ -35,7 +35,13 @@ function Navigation() {
             </li>
             <li>
               <Link to="/host">HOST</Link>
+              <select className="hidden">
+                <option value="With video off">With video off</option>
+                <option value="With video on">With video on</option>
+                <option value="Screen share only">Screen share only</option>
+              </select>
             </li>
+
             <li>
               <Link to="/signin">SIGN IN</Link>
             </li>
