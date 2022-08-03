@@ -15,7 +15,7 @@ function Signin() {
   const [loginPassword, setLoginPassword] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
   const navigate = useNavigate();
-  const provider = new FacebookAuthProvider();
+  const provider = new GoogleAuthProvider();
   // console.log(provider);
 
   const handleRegister = async () => {
@@ -40,6 +40,7 @@ function Signin() {
   const handleGoogleLogin = async () => {
     signInWithPopup(auth, provider)
       .then((result) => {
+        setLoggedIn(true);
         console.log(result);
       })
       .catch((error) => {
