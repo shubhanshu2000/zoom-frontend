@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 function Navigation() {
   const [visible, setVisible] = useState(false);
 
-  console.log(visible);
-
   return (
     <div>
       <header className="">

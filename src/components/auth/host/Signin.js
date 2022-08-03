@@ -1,8 +1,66 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import signinData from "./signindata";
-
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+  signInWithRedirect,
+  FacebookAuthProvider,
+} from "firebase/auth";
+import { auth } from "../firebase/firebase";
 function Signin() {
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+  const [loggedIn, setLoggedIn] = useState(false);
+  const navigate = useNavigate();
+  const provider = new FacebookAuthProvider();
+  // console.log(provider);
+
+  const handleRegister = async () => {
+    try {
+      const authed = await createUserWithEmailAndPassword(
+        auth,
+        loginEmail,
+        loginPassword
+      );
+      setLoggedIn(true);
+      console.log(authed);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    if (loggedIn) {
+      return navigate("/");
+    }
+  }, [loggedIn]);
+
+  const handleGoogleLogin = async () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const handleLogin = async () => {
+    try {
+      const authed = await signInWithEmailAndPassword(
+        auth,
+        loginEmail,
+        loginPassword
+      );
+      setLoggedIn(true);
+      console.log(authed);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <div className="relative ">
@@ -46,6 +104,8 @@ function Signin() {
                           className="w-full text-black focus:border-[#0E72ED] focus:border-1 focus:outline-none border-[1px] mt-2  border-[#ccc] rounded-xl py-[0.35rem] pl-4 text-base"
                           name="email"
                           type="email"
+                          value={loginEmail}
+                          onChange={(e) => setLoginEmail(e.target.value)}
                           placeholder="Email Address"
                         />
                       </div>
@@ -60,10 +120,11 @@ function Signin() {
                           type="password"
                           name="password"
                           placeholder="Password"
+                          value={loginPassword}
+                          onChange={(e) => setLoginPassword(e.target.value)}
                           className="w-full text-black focus:border-[#0E72ED] focus:border-1 focus:outline-none border-[1px] mt-2  border-[#ccc] rounded-xl py-[0.35rem] pl-4 text-base"
                         />
                       </div>
-
                       <div className="-mb-8  ">
                         <p className="-mt-2 -mb-[0.2rem] text-xs">
                           By signing in, I agree to the{" "}
@@ -79,6 +140,7 @@ function Signin() {
                         <button
                           className="mx-auto py-2 my-4 font-semibold rounded-xl  w-full bg-[#0E72ED] text-[#fff]"
                           type="button"
+                          onClick={handleLogin}
                         >
                           Sign In
                         </button>
@@ -114,6 +176,7 @@ function Signin() {
                               <div className="cursor-pointer h-20 hover:text-[black] flex flex-col justify-between  items-center">
                                 <img
                                   src={img}
+                                  onClick={handleGoogleLogin}
                                   className="w-[50px] rounded-2xl border-[#e4e2e2] border-[1px] hover:bg-[#e4e2e2] p-[0.9rem] mx-auto text-[30px]"
                                   alt={name}
                                 />
