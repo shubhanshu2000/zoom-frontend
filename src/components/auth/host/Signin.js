@@ -15,7 +15,7 @@ function Signin() {
   const [loginPassword, setLoginPassword] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
   const navigate = useNavigate();
-  const provider = new GoogleAuthProvider();
+  const provider = new FacebookAuthProvider();
   // console.log(provider);
 
   const handleRegister = async () => {
