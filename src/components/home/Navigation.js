@@ -36,8 +36,8 @@ function Navigation() {
               <Link to="/join">JOIN</Link>
             </li>
             <li
-              onMouseEnter={() => setVisible(!visible)}
-              onMouseLeave={() => setTimeout(() => setVisible(!visible), 800)}
+              onMouseEnter={() => setVisible(true)}
+              onMouseLeave={() => setTimeout(() => setVisible(false), 500)}
             >
               <div className="relative py-2">
                 <span className="cursor-pointer flex">

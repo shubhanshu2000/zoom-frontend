@@ -5,8 +5,9 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   GoogleAuthProvider,
+  GithubAuthProvider,
+  TwitterAuthProvider,
   signInWithPopup,
-  signInWithRedirect,
   FacebookAuthProvider,
 } from "firebase/auth";
 import { auth } from "../firebase/firebase";
@@ -15,7 +16,10 @@ function Signin() {
   const [loginPassword, setLoginPassword] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
   const navigate = useNavigate();
-  const provider = new FacebookAuthProvider();
+  const googleProvider = new GoogleAuthProvider();
+  const twitterProvider = new TwitterAuthProvider();
+  const githubProvider = new GithubAuthProvider();
+  const metaProvider = new FacebookAuthProvider();
   // console.log(provider);
 
   const handleRegister = async () => {
@@ -38,14 +42,39 @@ function Signin() {
   }, [loggedIn]);
 
   const handleGoogleLogin = async () => {
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        setLoggedIn(true);
-        console.log(result);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    try {
+      const authed = await signInWithPopup(auth, googleProvider);
+      setLoggedIn(true);
+      console.log(authed.user.displayName);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const handleTwitterLogin = async () => {
+    try {
+      const authed = await signInWithPopup(auth, twitterProvider);
+      setLoggedIn(true);
+      console.log(authed);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const handleGithubLogin = async () => {
+    try {
+      const authed = await signInWithPopup(auth, githubProvider);
+      setLoggedIn(true);
+      console.log(authed);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const handleMetaLogin = async () => {
+    try {
+      const authed = await signInWithPopup(auth, metaProvider);
+      setLoggedIn(true);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleLogin = async () => {
@@ -56,11 +85,16 @@ function Signin() {
         loginPassword
       );
       setLoggedIn(true);
-      console.log(authed);
     } catch (error) {
       console.log(error);
     }
   };
+
+  function onClickHandleLogin(e) {
+    if (e.keyCode === 13) {
+      handleLogin();
+    }
+  }
 
   return (
     <>
@@ -92,7 +126,7 @@ function Signin() {
 
               <div className="w-1/2 flex flex-col rounded-r-2xl bg-[#fff]">
                 <div className="h-3/4  ">
-                  <form className="h-3/4 mt-4">
+                  <form className="h-3/4 mt-4" onKeyDown={onClickHandleLogin}>
                     <div className="flex w-8/12 flex-col mx-auto justify-evenly h-full">
                       <div>
                         <label
@@ -161,36 +195,61 @@ function Signin() {
                   </form>
                 </div>
                 <div className="relative">
-                  <div className="absolute w-full -top-12">
+                  <div className="absolute w-full -top-14">
                     <div className="flex  w-2/3 items-center mx-auto">
                       <hr className=" w-1/3 h-[1px]" />
                       <p className="mx-auto text-[#747487]">Or sign with</p>
                       <hr className=" w-1/3 h-[1px]" />
                     </div>
                   </div>
-                  <div className="absolute w-full mt-2">
+                  <div className="absolute w-full mt-1">
                     <div className="flex w-2/3  mx-auto  items-center justify-around">
-                      {signinData.map(({ img, name }, index) => {
-                        return (
-                          <>
-                            <div key={index}>
-                              <div className="cursor-pointer h-20 hover:text-[black] flex flex-col justify-between  items-center">
-                                <img
-                                  src={img}
-                                  onClick={handleGoogleLogin}
-                                  className="w-[50px] rounded-2xl border-[#e4e2e2] border-[1px] hover:bg-[#e4e2e2] p-[0.9rem] mx-auto text-[30px]"
-                                  alt={name}
-                                />
-                                <p className="text-center text-[rgba(4,4,19,0.56)] mx-auto">
-                                  {name}
-                                </p>
-                              </div>
-                            </div>
-                          </>
-                        );
-                      })}
+                      <div className="cursor-pointer h-24 hover:text-[black] flex flex-col justify-between  items-center">
+                        <img
+                          src={signinData[0].img}
+                          onClick={handleTwitterLogin}
+                          className="w-[50px] rounded-2xl border-[#e4e2e2] border-[1px] hover:bg-[#e4e2e2] p-[0.9rem] mx-auto text-[30px]"
+                          alt={signinData[0].name}
+                        />
+                        <p className="text-center text-[rgba(4,4,19,0.56)] mx-auto">
+                          {signinData[0].name}
+                        </p>
+                      </div>
+                      <div className="cursor-pointer h-24 hover:text-[black] flex flex-col justify-between  items-center">
+                        <img
+                          src={signinData[1].img}
+                          onClick={handleGithubLogin}
+                          className="w-[50px] rounded-2xl border-[#e4e2e2] border-[1px] hover:bg-[#e4e2e2] p-[0.9rem] mx-auto text-[30px]"
+                          alt={signinData[1].name}
+                        />
+                        <p className="text-center text-[rgba(4,4,19,0.56)] mx-auto">
+                          {signinData[1].name}
+                        </p>
+                      </div>
+                      <div className="cursor-pointer h-24 hover:text-[black] flex flex-col justify-between  items-center">
+                        <img
+                          src={signinData[2].img}
+                          onClick={handleGoogleLogin}
+                          className="w-[50px] rounded-2xl border-[#e4e2e2] border-[1px] hover:bg-[#e4e2e2] p-[0.9rem] mx-auto text-[30px]"
+                          alt={signinData[2].name}
+                        />
+                        <p className="text-center text-[rgba(4,4,19,0.56)] mx-auto">
+                          {signinData[2].name}
+                        </p>
+                      </div>
+                      <div className="cursor-pointer h-24 hover:text-[black] flex flex-col justify-between  items-center">
+                        <img
+                          src={signinData[3].img}
+                          onClick={handleMetaLogin}
+                          className="w-[50px] rounded-2xl border-[#e4e2e2] border-[1px] hover:bg-[#e4e2e2] p-[0.9rem] mx-auto text-[30px]"
+                          alt={signinData[3].name}
+                        />
+                        <p className="text-center text-[rgba(4,4,19,0.56)] mx-auto">
+                          {signinData[3].name}
+                        </p>
+                      </div>
                     </div>
-                    <p className="w-2/3 mx-auto my-4 text-xs">
+                    <p className="w-2/3 mx-auto my-2 text-xs">
                       Zoom is protected by reCAPTCHA and their{" "}
                       <span className="text-[#0956B5] cursor-pointer hover:underline">
                         Privacy Policy{" "}

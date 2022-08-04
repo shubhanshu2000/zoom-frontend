@@ -12,7 +12,7 @@ const signinData = [
     name: "Google",
   },
   {
-    img: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAMAAAC7IEhfAAAARVBMVEUAAAAYd/IYdvMYd/ITc+8Yd+8XdvMYd/IYd/IYd/IYd/IYdvMYdvIYd/MZd/EXdvEYePIYd/MXdvMYdvEYde8VdfQYd/IJb26AAAAAFnRSTlMA3z/vECDPb7+fj3+vX5CPYL+vf2AwOzKJBAAAAQlJREFUOMuNlO1uwyAMRS+Yj1CSdms3v/+jLhXRTGLi5vyKrBMu2Ajs8fnpiJnSs3qcEl7EHa7EsXZnxUjNxAPccvTufMJtH/vNp6QAIbHBZOa6FZX+pdbwLc5zIzcvuoO3YCNyg9p/5eBliNiHR7V3LXIYLLiMxArguMOwTSp152aSk0lp2AmPemzgeAQZ80jUG5qRbFHKdE0ksCkK0K0Wci+SId76aGeI3XVOmA0x9e3JhshC7UeY/Jvm/K5f/RjXMtntkWq9IhYA4YoYpVumWPAm0CfRRZmUKS4yKlN84J/JEhOEkM7FKaiLokXJFX7cSKQMRSxafLRYrbpepJdoCl+3x7Bkjx1/kzFOUX2NHDUAAAAASUVORK5CYII=",
+    img: "https://img.icons8.com/fluency/344/meta.png",
     name: "Meta",
   },
 ];
