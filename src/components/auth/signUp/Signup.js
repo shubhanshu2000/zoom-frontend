@@ -53,8 +53,8 @@ function Signup() {
   const handleTwitterLogin = async () => {
     try {
       const authed = await signInWithPopup(auth, twitterProvider);
+      // console.log(authed.user.displayName);
       setLoggedIn(true);
-      console.log(authed);
     } catch (error) {
       console.log(error);
     }
@@ -63,7 +63,6 @@ function Signup() {
     try {
       const authed = await signInWithPopup(auth, githubProvider);
       setLoggedIn(true);
-      console.log(authed);
     } catch (error) {
       console.log(error);
     }
