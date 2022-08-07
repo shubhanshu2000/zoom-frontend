@@ -7,7 +7,7 @@ function Navigation() {
   return (
     <div>
       <header className="">
-        <nav className="fixed bg-white top-0 w-full z-[99999] flex  justify-between border-b-[1px] py-4 px-12 opacity-95 border-[#e7e7e7]   text-sm font-semibold">
+        <nav className="fixed bg-white top-0 w-full z-[99] flex  justify-between border-b-[1px] py-4 px-12 opacity-95 border-[#e7e7e7]   text-sm font-semibold">
           <div className="flex justify-between items-center">
             <Link to="/">
               <img
@@ -70,8 +70,10 @@ function Navigation() {
             <li>
               <Link to="/signin">SIGN IN</Link>
             </li>
-            <li className="text-white bg-[#f26d21] rounded-lg px-4 py-2">
-              <Link to="/signup">SIGN UP IT'S FREE</Link>
+            <li className="text-white   ">
+              <Link className="px-4 py-2 rounded-xl bg-[#f26d21]" to="/signup">
+                SIGN UP IT'S FREE
+              </Link>
             </li>
           </ul>
         </nav>

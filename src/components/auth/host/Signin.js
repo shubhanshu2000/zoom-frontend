@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+
 import signinData from "./signindata";
 import {
   createUserWithEmailAndPassword,
@@ -11,6 +13,7 @@ import {
   FacebookAuthProvider,
 } from "firebase/auth";
 import { auth } from "../firebase/firebase";
+
 function Signin() {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
@@ -29,6 +32,7 @@ function Signin() {
         loginPassword
       );
       setLoggedIn(true);
+
       console.log(authed);
     } catch (error) {
       console.log(error);
@@ -44,8 +48,10 @@ function Signin() {
     try {
       const authed = await signInWithPopup(auth, googleProvider);
       setLoggedIn(true);
+      toast.success(`Welcome ${authed.user.displayName}`);
       console.log(authed.user.displayName);
     } catch (error) {
+      toast.error(error.message);
       console.log(error);
     }
   };
@@ -53,8 +59,10 @@ function Signin() {
     try {
       const authed = await signInWithPopup(auth, twitterProvider);
       setLoggedIn(true);
+      toast.success(`Welcome ${authed.user.displayName}`);
       console.log(authed);
     } catch (error) {
+      toast.error(error.message);
       console.log(error);
     }
   };
@@ -62,8 +70,9 @@ function Signin() {
     try {
       const authed = await signInWithPopup(auth, githubProvider);
       setLoggedIn(true);
-      console.log(authed);
+      toast.success(`Welcome ${authed.user.reloadUserInfo.screenName}`);
     } catch (error) {
+      toast.error(error.message);
       console.log(error);
     }
   };
@@ -71,7 +80,9 @@ function Signin() {
     try {
       const authed = await signInWithPopup(auth, metaProvider);
       setLoggedIn(true);
+      toast.success(`Welcome ${authed.user.displayName}`);
     } catch (error) {
+      toast.error(error.message);
       console.log(error);
     }
   };
@@ -83,9 +94,11 @@ function Signin() {
         loginEmail,
         loginPassword
       );
+
       setLoggedIn(true);
+      toast.success(`Welcome ${authed.user.email}`);
     } catch (error) {
-      console.log(error);
+      toast.error(error.message);
     }
   };
 
@@ -178,6 +191,7 @@ function Signin() {
                         >
                           Sign In
                         </button>
+
                         <div className="flex items-center">
                           <input
                             className="mr-1"
@@ -203,7 +217,7 @@ function Signin() {
                   </div>
                   <div className="absolute w-full mt-1">
                     <div className="flex w-2/3  mx-auto  items-center justify-around">
-                      <div className="cursor-pointer h-24 hover:text-[black] flex flex-col justify-between  items-center">
+                      <div className="cursor-pointer h-20 hover:text-[black] flex flex-col justify-between  items-center">
                         <img
                           src={signinData[0].img}
                           onClick={handleTwitterLogin}
@@ -214,18 +228,18 @@ function Signin() {
                           {signinData[0].name}
                         </p>
                       </div>
-                      <div className="cursor-pointer h-24 hover:text-[black] flex flex-col justify-between  items-center">
+                      <div className="cursor-pointer h-20 hover:text-[black] flex flex-col justify-between  items-center">
                         <img
                           src={signinData[1].img}
                           onClick={handleGithubLogin}
-                          className="w-[50px] rounded-2xl border-[#e4e2e2] border-[1px] hover:bg-[#e4e2e2] p-[0.9rem] mx-auto text-[30px]"
+                          className="w-[48px] rounded-2xl border-[#e4e2e2] border-[1px] hover:bg-[#e4e2e2] p-[0.9rem] mx-auto text-[30px]"
                           alt={signinData[1].name}
                         />
                         <p className="text-center text-[rgba(4,4,19,0.56)] mx-auto">
                           {signinData[1].name}
                         </p>
                       </div>
-                      <div className="cursor-pointer h-24 hover:text-[black] flex flex-col justify-between  items-center">
+                      <div className="cursor-pointer h-20 hover:text-[black] flex flex-col justify-between  items-center">
                         <img
                           src={signinData[2].img}
                           onClick={handleGoogleLogin}
@@ -236,7 +250,7 @@ function Signin() {
                           {signinData[2].name}
                         </p>
                       </div>
-                      <div className="cursor-pointer h-24 hover:text-[black] flex flex-col justify-between  items-center">
+                      <div className="cursor-pointer h-20 hover:text-[black] flex flex-col justify-between  items-center">
                         <img
                           src={signinData[3].img}
                           onClick={handleMetaLogin}
@@ -248,7 +262,7 @@ function Signin() {
                         </p>
                       </div>
                     </div>
-                    <p className="w-2/3 mx-auto my-2 text-xs">
+                    <p className="w-2/3 mx-auto my-4 text-xs">
                       Zoom is protected by reCAPTCHA and their{" "}
                       <span className="text-[#0956B5] cursor-pointer hover:underline">
                         Privacy Policy{" "}

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import signinData from "../host/signindata";
+import toast from "react-hot-toast";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -30,6 +31,7 @@ function Signup() {
         loginPassword
       );
       setLoggedIn(true);
+
       console.log(authed);
     } catch (error) {
       console.log(error);
@@ -44,8 +46,9 @@ function Signup() {
     try {
       const authed = await signInWithPopup(auth, googleProvider);
       setLoggedIn(true);
-      console.log(authed.user.displayName);
+      toast.success(`Welcome ${authed.user.displayName}`);
     } catch (error) {
+      toast.error(error.message);
       console.log(error);
     }
   };
@@ -53,9 +56,10 @@ function Signup() {
   const handleTwitterLogin = async () => {
     try {
       const authed = await signInWithPopup(auth, twitterProvider);
-      // console.log(authed.user.displayName);
+      toast.success(`Welcome ${authed.user.displayName}`);
       setLoggedIn(true);
     } catch (error) {
+      toast.error(error.message);
       console.log(error);
     }
   };
@@ -63,16 +67,18 @@ function Signup() {
     try {
       const authed = await signInWithPopup(auth, githubProvider);
       setLoggedIn(true);
+      toast.success(`Welcome ${authed.user.reloadUserInfo.screenName}`);
     } catch (error) {
-      console.log(error);
+      toast.error(error.message);
     }
   };
   const handleMetaLogin = async () => {
     try {
       const authed = await signInWithPopup(auth, metaProvider);
       setLoggedIn(true);
+      toast.success(`Welcome ${authed.user.displayName}`);
     } catch (error) {
-      console.log(error);
+      toast.error(error.message);
     }
   };
 
