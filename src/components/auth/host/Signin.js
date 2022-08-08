@@ -24,20 +24,6 @@ function Signin() {
   const githubProvider = new GithubAuthProvider();
   const metaProvider = new FacebookAuthProvider();
 
-  const handleRegister = async () => {
-    try {
-      const authed = await createUserWithEmailAndPassword(
-        auth,
-        loginEmail,
-        loginPassword
-      );
-      setLoggedIn(true);
-
-      console.log(authed);
-    } catch (error) {
-      console.log(error);
-    }
-  };
   useEffect(() => {
     if (loggedIn) {
       return navigate("/");
@@ -48,10 +34,10 @@ function Signin() {
     try {
       const authed = await signInWithPopup(auth, googleProvider);
       setLoggedIn(true);
-      toast.success(`Welcome ${authed.user.displayName}`);
+      toast.success(`Welcome back ${authed.user.displayName}`);
       console.log(authed.user.displayName);
     } catch (error) {
-      toast.error(error.message);
+      toast.error("Invalid E-mail or Password");
       console.log(error);
     }
   };
@@ -59,10 +45,10 @@ function Signin() {
     try {
       const authed = await signInWithPopup(auth, twitterProvider);
       setLoggedIn(true);
-      toast.success(`Welcome ${authed.user.displayName}`);
+      toast.success(`Welcome back ${authed.user.displayName}`);
       console.log(authed);
     } catch (error) {
-      toast.error(error.message);
+      toast.error("Invalid E-mail or Password");
       console.log(error);
     }
   };
@@ -70,9 +56,9 @@ function Signin() {
     try {
       const authed = await signInWithPopup(auth, githubProvider);
       setLoggedIn(true);
-      toast.success(`Welcome ${authed.user.reloadUserInfo.screenName}`);
+      toast.success(`Welcome back ${authed.user.reloadUserInfo.screenName}`);
     } catch (error) {
-      toast.error(error.message);
+      toast.error("Invalid E-mail or Password");
       console.log(error);
     }
   };
@@ -80,9 +66,9 @@ function Signin() {
     try {
       const authed = await signInWithPopup(auth, metaProvider);
       setLoggedIn(true);
-      toast.success(`Welcome ${authed.user.displayName}`);
+      toast.success(`Welcome back ${authed.user.displayName}`);
     } catch (error) {
-      toast.error(error.message);
+      toast.error("Invalid E-mail or Password");
       console.log(error);
     }
   };
@@ -94,11 +80,10 @@ function Signin() {
         loginEmail,
         loginPassword
       );
-
       setLoggedIn(true);
-      toast.success(`Welcome ${authed.user.email}`);
+      toast.success(`Welcome back ${authed.user.email}`);
     } catch (error) {
-      toast.error(error.message);
+      toast.error("Invalid E-mail or Password");
     }
   };
 

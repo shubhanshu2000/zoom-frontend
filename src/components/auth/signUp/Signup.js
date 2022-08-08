@@ -48,8 +48,7 @@ function Signup() {
       setLoggedIn(true);
       toast.success(`Welcome ${authed.user.displayName}`);
     } catch (error) {
-      toast.error(error.message);
-      console.log(error);
+      toast.error("Invalid E-mail or Password");
     }
   };
 
@@ -59,8 +58,7 @@ function Signup() {
       toast.success(`Welcome ${authed.user.displayName}`);
       setLoggedIn(true);
     } catch (error) {
-      toast.error(error.message);
-      console.log(error);
+      toast.error("Invalid E-mail or Password");
     }
   };
   const handleGithubLogin = async () => {
@@ -69,7 +67,7 @@ function Signup() {
       setLoggedIn(true);
       toast.success(`Welcome ${authed.user.reloadUserInfo.screenName}`);
     } catch (error) {
-      toast.error(error.message);
+      toast.error("Invalid E-mail or Password");
     }
   };
   const handleMetaLogin = async () => {
@@ -78,7 +76,7 @@ function Signup() {
       setLoggedIn(true);
       toast.success(`Welcome ${authed.user.displayName}`);
     } catch (error) {
-      toast.error(error.message);
+      toast.error("Invalid E-mail or Password");
     }
   };
 
