@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
 import signinData from "./signindata";
 import {
-  createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   GoogleAuthProvider,
   GithubAuthProvider,
@@ -17,23 +16,16 @@ import { auth } from "../firebase/firebase";
 function Signin() {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
-  const [loggedIn, setLoggedIn] = useState(false);
   const navigate = useNavigate();
   const googleProvider = new GoogleAuthProvider();
   const twitterProvider = new TwitterAuthProvider();
   const githubProvider = new GithubAuthProvider();
   const metaProvider = new FacebookAuthProvider();
 
-  useEffect(() => {
-    if (loggedIn) {
-      return navigate("/");
-    }
-  }, [loggedIn]);
-
   const handleGoogleLogin = async () => {
     try {
       const authed = await signInWithPopup(auth, googleProvider);
-      setLoggedIn(true);
+
       toast.success(`Welcome back ${authed.user.displayName}`);
       console.log(authed.user.displayName);
     } catch (error) {
@@ -44,7 +36,7 @@ function Signin() {
   const handleTwitterLogin = async () => {
     try {
       const authed = await signInWithPopup(auth, twitterProvider);
-      setLoggedIn(true);
+
       toast.success(`Welcome back ${authed.user.displayName}`);
       console.log(authed);
     } catch (error) {
@@ -55,7 +47,7 @@ function Signin() {
   const handleGithubLogin = async () => {
     try {
       const authed = await signInWithPopup(auth, githubProvider);
-      setLoggedIn(true);
+
       toast.success(`Welcome back ${authed.user.reloadUserInfo.screenName}`);
     } catch (error) {
       toast.error("Invalid E-mail or Password");
@@ -65,7 +57,6 @@ function Signin() {
   const handleMetaLogin = async () => {
     try {
       const authed = await signInWithPopup(auth, metaProvider);
-      setLoggedIn(true);
       toast.success(`Welcome back ${authed.user.displayName}`);
     } catch (error) {
       toast.error("Invalid E-mail or Password");
@@ -80,7 +71,6 @@ function Signin() {
         loginEmail,
         loginPassword
       );
-      setLoggedIn(true);
       toast.success(`Welcome back ${authed.user.email}`);
     } catch (error) {
       toast.error("Invalid E-mail or Password");
@@ -100,7 +90,7 @@ function Signin() {
           <div className="flex justify-center w-[98vw] items-center h-screen">
             <div className="flex shadow-2xl h-[90vh] text-[#595959]  rounded-2xl  w-[75vw] ">
               <div
-                className="rounded-l-2xl  w-1/2 bg-center bg-contain bg-no-repeat bg-[#dae0e9] "
+                className="rounded-l-2xl  w-1/2 bg-[center_190px] bg-contain bg-no-repeat bg-[#dae0e9] "
                 style={{
                   backgroundImage: `url("https://st2.zoom.us/static/6.2.7712/image/user/arrow.png")`,
                 }}
@@ -206,7 +196,7 @@ function Signin() {
                         <img
                           src={signinData[0].img}
                           onClick={handleTwitterLogin}
-                          className="w-[50px] rounded-2xl border-[#e4e2e2] border-[1px] hover:bg-[#e4e2e2] p-[0.9rem] mx-auto text-[30px]"
+                          className="w-[49px] h-[49px] rounded-2xl border-[#e4e2e2] border-[1px] hover:bg-[#e4e2e2] p-[0.9rem] mx-auto text-[30px]"
                           alt={signinData[0].name}
                         />
                         <p className="text-center text-[rgba(4,4,19,0.56)] mx-auto">
@@ -217,7 +207,7 @@ function Signin() {
                         <img
                           src={signinData[1].img}
                           onClick={handleGithubLogin}
-                          className="w-[48px] rounded-2xl border-[#e4e2e2] border-[1px] hover:bg-[#e4e2e2] p-[0.9rem] mx-auto text-[30px]"
+                          className="w-[48px] h-[49px] rounded-2xl border-[#e4e2e2] border-[1px] hover:bg-[#e4e2e2] p-[0.9rem] mx-auto text-[30px]"
                           alt={signinData[1].name}
                         />
                         <p className="text-center text-[rgba(4,4,19,0.56)] mx-auto">
@@ -228,7 +218,7 @@ function Signin() {
                         <img
                           src={signinData[2].img}
                           onClick={handleGoogleLogin}
-                          className="w-[50px] rounded-2xl border-[#e4e2e2] border-[1px] hover:bg-[#e4e2e2] p-[0.9rem] mx-auto text-[30px]"
+                          className="w-[49px] h-[49px] rounded-2xl border-[#e4e2e2] border-[1px] hover:bg-[#e4e2e2] p-[0.9rem] mx-auto text-[30px]"
                           alt={signinData[2].name}
                         />
                         <p className="text-center text-[rgba(4,4,19,0.56)] mx-auto">
@@ -239,7 +229,7 @@ function Signin() {
                         <img
                           src={signinData[3].img}
                           onClick={handleMetaLogin}
-                          className="w-[50px] rounded-2xl border-[#e4e2e2] border-[1px] hover:bg-[#e4e2e2] p-[0.9rem] mx-auto text-[30px]"
+                          className="w-[49px] h-[49px] rounded-2xl border-[#e4e2e2] border-[1px] hover:bg-[#e4e2e2] p-[0.9rem] mx-auto text-[30px]"
                           alt={signinData[3].name}
                         />
                         <p className="text-center text-[rgba(4,4,19,0.56)] mx-auto">

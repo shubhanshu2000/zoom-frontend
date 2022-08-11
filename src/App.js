@@ -5,6 +5,7 @@ import Join from "./components/auth/join/Join";
 import Signin from "./components/auth/host/Signin";
 import Signup from "./components/auth/signUp/Signup";
 import { Toaster } from "react-hot-toast";
+import SignUpDetail from "./components/auth/signUp/SignUpDetail";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
             <Route path="/join" element={<Join />} />
             <Route path="/signin" element={<Signin />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/signupdetail" element={<SignUpDetail />} />
           </Routes>
         </BrowserRouter>
       </div>
