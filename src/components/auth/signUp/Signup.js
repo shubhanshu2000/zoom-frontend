@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
@@ -18,14 +18,14 @@ function SignUp() {
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
   const [confirmRegisterPassword, setConfirmRegisterPassword] = useState("");
+  const [change, setChange] = useState(false);
+  const [pwdConfirm, setPwdConfirm] = useState(false);
   const [visible, setVisible] = useState(false);
   const navigate = useNavigate();
   const googleProvider = new GoogleAuthProvider();
   const twitterProvider = new TwitterAuthProvider();
   const githubProvider = new GithubAuthProvider();
   const metaProvider = new FacebookAuthProvider();
-
-  console.log(visible);
 
   const handleRegister = async () => {
     try {
@@ -73,6 +73,7 @@ function SignUp() {
       console.log(error);
     }
   };
+
   const handleMetaLogin = async () => {
     try {
       const authed = await signInWithPopup(auth, metaProvider);
@@ -83,6 +84,16 @@ function SignUp() {
       console.log(error);
     }
   };
+
+  // const handleConfirmPassword = (str) => {
+  //   if (str.includes(confirmRegisterPassword)) {
+  //     setPwdConfirm(true);
+  //   }
+  // };
+  // console.log(pwdConfirm);
+  // useEffect(() => {
+  //   handleConfirmPassword(registerPassword);
+  // }, [registerPassword, confirmRegisterPassword]);
 
   function onClickHandleLogin(e) {
     if (e.keyCode === 13) {
@@ -151,11 +162,15 @@ function SignUp() {
                           placeholder="Password"
                           value={registerPassword}
                           onClick={() => setVisible(true)}
-                          onChange={(e) => setRegisterPassword(e.target.value)}
+                          onChange={(e) => {
+                            setRegisterPassword(e.target.value);
+                          }}
                           className="w-full  relative text-black focus:border-[#0E72ED] focus:border-1 focus:outline-none border-[1px] mt-2  border-[#ccc] rounded-xl py-[0.35rem] pl-4 text-base"
                         />
 
                         <PasswordCheck
+                          change={change}
+                          setChange={setChange}
                           visible={visible}
                           setVisible={setVisible}
                           registerPassword={registerPassword}
@@ -174,10 +189,14 @@ function SignUp() {
                           name=" confirm password"
                           placeholder="Confirm Password"
                           value={confirmRegisterPassword}
-                          onChange={(e) =>
-                            setConfirmRegisterPassword(e.target.value)
-                          }
+                          onChange={(e) => {
+                            setConfirmRegisterPassword(e.target.value);
+                          }}
+                          style={{
+                            borderColor: pwdConfirm ? "#0E72ED" : "red",
+                          }}
                           className="w-full text-black focus:border-[#0E72ED] focus:border-1 focus:outline-none border-[1px] mt-2  border-[#ccc] rounded-xl py-[0.35rem] pl-4 text-base"
+                          required
                         />
                       </div>
                       <div className="-mb-8  ">
