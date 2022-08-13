@@ -25,42 +25,40 @@ function Signin() {
   const handleGoogleLogin = async () => {
     try {
       const authed = await signInWithPopup(auth, googleProvider);
-
+      navigate("/");
       toast.success(`Welcome back ${authed.user.displayName}`);
-      console.log(authed.user.displayName);
     } catch (error) {
       toast.error("Invalid E-mail or Password");
-      console.log(error);
     }
   };
   const handleTwitterLogin = async () => {
     try {
       const authed = await signInWithPopup(auth, twitterProvider);
+      navigate("/");
 
       toast.success(`Welcome back ${authed.user.displayName}`);
-      console.log(authed);
     } catch (error) {
       toast.error("Invalid E-mail or Password");
-      console.log(error);
     }
   };
   const handleGithubLogin = async () => {
     try {
       const authed = await signInWithPopup(auth, githubProvider);
+      navigate("/");
 
       toast.success(`Welcome back ${authed.user.reloadUserInfo.screenName}`);
     } catch (error) {
       toast.error("Invalid E-mail or Password");
-      console.log(error);
     }
   };
   const handleMetaLogin = async () => {
     try {
       const authed = await signInWithPopup(auth, metaProvider);
+      navigate("/");
+
       toast.success(`Welcome back ${authed.user.displayName}`);
     } catch (error) {
       toast.error("Invalid E-mail or Password");
-      console.log(error);
     }
   };
 
@@ -71,6 +69,8 @@ function Signin() {
         loginEmail,
         loginPassword
       );
+      navigate("/");
+
       toast.success(`Welcome back ${authed.user.email}`);
     } catch (error) {
       toast.error("Invalid E-mail or Password");

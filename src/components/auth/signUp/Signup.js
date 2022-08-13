@@ -85,15 +85,17 @@ function SignUp() {
     }
   };
 
-  // const handleConfirmPassword = (str) => {
-  //   if (str.includes(confirmRegisterPassword)) {
-  //     setPwdConfirm(true);
-  //   }
-  // };
-  // console.log(pwdConfirm);
-  // useEffect(() => {
-  //   handleConfirmPassword(registerPassword);
-  // }, [registerPassword, confirmRegisterPassword]);
+  const handleConfirmPassword = () => {
+    if (registerPassword !== confirmRegisterPassword) {
+      setPwdConfirm(false);
+    } else {
+      setPwdConfirm(true);
+    }
+  };
+
+  useEffect(() => {
+    handleConfirmPassword();
+  }, [confirmRegisterPassword]);
 
   function onClickHandleLogin(e) {
     if (e.keyCode === 13) {
@@ -161,7 +163,8 @@ function SignUp() {
                           name="password"
                           placeholder="Password"
                           value={registerPassword}
-                          onClick={() => setVisible(true)}
+                          onFocus={() => setVisible(true)}
+                          onBlur={() => setVisible(false)}
                           onChange={(e) => {
                             setRegisterPassword(e.target.value);
                           }}
@@ -178,26 +181,46 @@ function SignUp() {
                         />
                       </div>
                       <div>
-                        <label
-                          htmlFor="confirm password"
-                          className="block -mt-2 text-sm text-[#747486]"
-                        >
-                          Confirm Password
-                        </label>
-                        <input
-                          type="password"
-                          name=" confirm password"
-                          placeholder="Confirm Password"
-                          value={confirmRegisterPassword}
-                          onChange={(e) => {
-                            setConfirmRegisterPassword(e.target.value);
-                          }}
-                          style={{
-                            borderColor: pwdConfirm ? "#0E72ED" : "red",
-                          }}
-                          className="w-full text-black focus:border-[#0E72ED] focus:border-1 focus:outline-none border-[1px] mt-2  border-[#ccc] rounded-xl py-[0.35rem] pl-4 text-base"
-                          required
-                        />
+                        {pwdConfirm ? (
+                          <label
+                            htmlFor="confirm password"
+                            className="block -mt-2 text-sm text-[#747486]"
+                          >
+                            Confirm Password
+                            <input
+                              type="password"
+                              name=" confirm password"
+                              placeholder="Confirm Password"
+                              value={confirmRegisterPassword}
+                              onChange={(e) => {
+                                setConfirmRegisterPassword(e.target.value);
+                              }}
+                              className="w-full text-black focus:border-[#0E72ED] focus:border-1 focus:outline-none border-[1px] mt-2  border-[#ccc] rounded-xl py-[0.35rem] pl-4 text-base"
+                              required
+                            />
+                          </label>
+                        ) : (
+                          <label
+                            htmlFor="confirm password"
+                            className="block -mt-2 text-sm text-[#747486]"
+                          >
+                            Confirm Password
+                            <input
+                              type="password"
+                              name=" confirm password"
+                              placeholder="Confirm Password"
+                              value={confirmRegisterPassword}
+                              onChange={(e) => {
+                                setConfirmRegisterPassword(e.target.value);
+                              }}
+                              className="w-full   text-black focus:border-red-600 focus:border-1 focus:outline-none border-[1px] mt-2  border-[#ccc] rounded-xl py-[0.35rem] pl-4 text-base"
+                              required
+                            />
+                            <span className="text-red-600">
+                              Confirm password doesn't match
+                            </span>
+                          </label>
+                        )}
                       </div>
                       <div className="-mb-8  ">
                         <p className="-mt-2 -mb-[0.2rem] text-xs">
@@ -212,6 +235,7 @@ function SignUp() {
                           .
                         </p>
                         <button
+                          disabled={!pwdConfirm}
                           className="mx-auto py-2 my-4 font-semibold rounded-xl  w-full bg-[#0E72ED] text-[#fff]"
                           type="button"
                           onClick={handleRegister}
