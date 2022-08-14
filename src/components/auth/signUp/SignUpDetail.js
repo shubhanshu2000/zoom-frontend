@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../firebase/firebase";
 import toast from "react-hot-toast";
 
 function SignUpDetail() {
@@ -16,10 +18,22 @@ function SignUpDetail() {
     }
   }, [loggedIn]);
 
-  const handleDataSubmit = (e) => {
-    console.log("h1");
+  const handleDataSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const docRef = await addDoc(collection(db, "users"), {
+        first: firstName,
+        middle: lastName,
+        confirmEmail: confirmEmail,
+        confirmPassword: confirmPassword,
+      });
+      toast.success("Data submitted successfully");
+      console.log("Document written with ID: ", docRef);
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
   };
-  function onClickHandleLogin(e) {
+  function onClickHandleUserData(e) {
     if (e.keyCode === 13) {
       handleDataSubmit();
     }
@@ -49,7 +63,10 @@ function SignUpDetail() {
 
               <div className="w-1/2 relative flex flex-col rounded-r-2xl bg-[#fff]">
                 <div className="h-5/6  ">
-                  <form className="h-full mt-4" onKeyDown={onClickHandleLogin}>
+                  <form
+                    className="h-full mt-4"
+                    onKeyDown={onClickHandleUserData}
+                  >
                     <div className="flex w-8/12 flex-col mx-auto justify-evenly h-full">
                       <div>
                         <label
@@ -120,7 +137,7 @@ function SignUpDetail() {
                         />
                       </div>
                       <div className="-mb-8  ">
-                        <div className="flex   items-start">
+                        <div className="flex items-start">
                           <input
                             className="mr-[0.5rem] mt-[0.278rem]"
                             type="checkbox"
@@ -165,7 +182,6 @@ function SignUpDetail() {
               </div>
             </div>
           </div>
-          {/* <h1>Hello</h1> */}
         </div>
       </div>
     </>

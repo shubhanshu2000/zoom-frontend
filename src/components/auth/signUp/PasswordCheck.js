@@ -1,12 +1,6 @@
 import React, { useEffect } from "react";
 
-function PasswordCheck({
-  registerPassword,
-  change,
-  setChange,
-  visible,
-  setVisible,
-}) {
+function PasswordCheck({ registerPassword, change, setChange, visible }) {
   const minC = document.getElementsByClassName("li-text");
   const passLength = registerPassword.length;
   const hasnum = /\d/;
@@ -84,11 +78,7 @@ function PasswordCheck({
   }
   return (
     <>
-      <div
-        className=""
-        style={{ visibility: visible ? "visible" : "hidden" }}
-        onClick={() => setVisible(false)}
-      >
+      <div className="" style={{ visibility: visible ? "visible" : "hidden" }}>
         <div className="  relative">
           <div className="z-[9]   text-sm  mt-1 text-[#333] font-normal right-0 left-auto bg-[#fff] leading-6   rounded-xl bg- w-full shadow-[0px_5px_30px_0px_rgba(0,0,0,0.6)] p-4 absolute">
             <p>Password must:</p>

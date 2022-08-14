@@ -238,7 +238,7 @@ function Signin() {
                       </div>
                     </div>
                     <p className="w-2/3 mx-auto my-4 text-xs">
-                      Zoom is protected by reCAPTCHA and their{" "}
+                      Zoom is protected by reeCAPTCHA and their{" "}
                       <span className="text-[#0956B5] cursor-pointer hover:underline">
                         Privacy Policy{" "}
                       </span>

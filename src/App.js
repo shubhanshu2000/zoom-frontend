@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/home/Home";
 import Navigation from "./components/home/Navigation";
 import Join from "./components/auth/join/Join";
-import Signin from "./components/auth/host/Signin";
+import Signin from "./components/auth/signin/Signin";
 import Signup from "./components/auth/signUp/Signup";
 import { Toaster } from "react-hot-toast";
 import SignUpDetail from "./components/auth/signUp/SignUpDetail";
@@ -33,6 +33,7 @@ function App() {
             <Route path="/signin" element={<Signin />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/signupdetail" element={<SignUpDetail />} />
+            <Route />
           </Routes>
         </BrowserRouter>
       </div>
