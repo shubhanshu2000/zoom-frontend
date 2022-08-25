@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import loggedInContext from "../contextData/context";
 
 function Navigation() {
   const [visible, setVisible] = useState(false);
-
+  const context = useContext(loggedInContext);
+  console.log(context);
   return (
     <div>
       <header className="">
@@ -70,11 +73,25 @@ function Navigation() {
             <li>
               <Link to="/signin">SIGN IN</Link>
             </li>
-            <li className="text-white   ">
-              <Link className="px-4 py-2 rounded-xl bg-[#f26d21]" to="/signup">
-                SIGN UP IT'S FREE
-              </Link>
-            </li>
+            {context ? (
+              <li className="text-white   ">
+                <Link
+                  className="px-4 py-2 rounded-xl bg-[#6b6460]"
+                  to="/signup"
+                >
+                  SIGN UP IT'S FREE
+                </Link>
+              </li>
+            ) : (
+              <li className="text-white   ">
+                <Link
+                  className="px-4 py-2 rounded-xl bg-[#f26d21]"
+                  to="/signup"
+                >
+                  SIGN UP IT'S FREE
+                </Link>
+              </li>
+            )}
           </ul>
         </nav>
       </header>
