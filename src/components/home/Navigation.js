@@ -6,7 +6,7 @@ import loggedInContext from "../contextData/context";
 function Navigation() {
   const [visible, setVisible] = useState(false);
   const context = useContext(loggedInContext);
-  console.log(context);
+  // console.log(context);
   return (
     <div>
       <header className="">
