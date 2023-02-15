@@ -7,7 +7,8 @@ import Signup from "./components/auth/signUp/Signup";
 import loggedInContext from "./components/contextData/context";
 import { Toaster } from "react-hot-toast";
 import SignUpDetail from "./components/auth/signUp/SignUpDetail";
-import PeerJs from "./components/videoCallFeature/Peer";
+
+import Peers from "./components/videoCallFeature/Peer";
 
 function App() {
   return (
@@ -36,7 +37,7 @@ function App() {
             <Route path="/signin" element={<Signin />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/signupdetail" element={<SignUpDetail />} />
-            <Route path="/call" element={<PeerJs />} />
+            <Route path="/call" element={<Peers />} />
             <Route />
           </Routes>
         </BrowserRouter>
