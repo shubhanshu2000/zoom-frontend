@@ -33,7 +33,7 @@ const Peers = () => {
   }, [])
 
   const call = (remotePeerId) => {
-    let getUserMedia = navigator.mediaDevices.getUserMedia;
+    let getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
 
     getUserMedia({ video: true, audio: false }, (mediaStream) => {
 
