@@ -55,10 +55,10 @@ const Peers = () => {
       <input type="text" value={remotePeerIdValue} onChange={e => setRemotePeerIdValue(e.target.value)} />
       <button onClick={() => call(remotePeerIdValue)}>Call</button>
       <div>
-        <video ref={currentUserVideoRef} />
+        <video ref={currentUserVideoRef} width="200px" height="200px" />
       </div>
       <div>
-        <video ref={remoteVideoRef} />
+        <video ref={remoteVideoRef} width="200px" height="200px" />
       </div>
     </div>
   );
