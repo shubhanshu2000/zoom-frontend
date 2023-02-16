@@ -52,8 +52,8 @@ const Peers = () => {
   return (
     <div className="mt-[4.2rem]">
       <h1>Current user id is {peerId}</h1>
-      <input type="text" value={remotePeerIdValue} onChange={e => setRemotePeerIdValue(e.target.value)} />
-      <button onClick={() => call(remotePeerIdValue)}>Call</button>
+      <input className='border rounded-md py-1' type="text" value={remotePeerIdValue} onChange={e => setRemotePeerIdValue(e.target.value)} placeholder='Enter ID' />
+      <button className='bg-blue-400 ml-1 px-4 py-1 rounded-lg' onClick={() => call(remotePeerIdValue)}>Call</button>
       <div>
         <video ref={currentUserVideoRef} width="200px" height="200px" />
       </div>
